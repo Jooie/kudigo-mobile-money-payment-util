@@ -211,7 +211,7 @@ internal class BottomSheetPaymentProcessor : RoundedBottomSheetDialogFragment() 
         buttonCancel?.visibility = View.VISIBLE
         paymentProgress?.visibility = View.GONE
         textViewMessage?.text = message
-        textViewMessage.setTextColor(requireActivity().resources!!.getColor(R.color.colorRed))
+        textViewMessage.setTextColor(ContextCompat.getColor(activityCalling!!, R.color.colorRed))
     }
 
     //make payment
@@ -305,7 +305,7 @@ internal class BottomSheetPaymentProcessor : RoundedBottomSheetDialogFragment() 
         )
     }
 
-
+    //MARK: round
     fun round(value: Double?, numberOfDigitsAfterDecimalPoint: Int): String {
         if (value == null) {
             return value.toString()
