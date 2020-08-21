@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         buttonPay.setOnClickListener {
-            MakePayment(this).setApiToken("**************").startMoMoPaymentProcessor(paymentInfo, errorInfo, object : MoMoPaymentCallbackInterface {
+            MakePayment(this).setApiToken(BuildConfig.API_KEY).startMoMoPaymentProcessor(paymentInfo, errorInfo, object : MoMoPaymentCallbackInterface {
 
                 override fun onSuccess(network: String, number: String) {
 

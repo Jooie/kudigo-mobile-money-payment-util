@@ -8,7 +8,6 @@ android {
 
     def localProperties = new Properties()
     localProperties.load(new FileInputStream(rootProject.file("local.properties")))
-
     def apiKey = localProperties["apiKey"]
 
 
@@ -26,14 +25,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_KEY", apiKey
+        }
 
-             buildConfigField "String", "API_KEY", apiKey
-    }
-
-    debug {
-        buildConfigField "String", "API_KEY", apiKey
-    }
-
+        debug {
+            buildConfigField "String", "API_KEY", apiKey
+        }
     }
 }
 
