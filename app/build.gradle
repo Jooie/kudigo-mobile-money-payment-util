@@ -6,6 +6,12 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
+    def apiKey = localProperties["apiKey"]
+
+
     defaultConfig {
         applicationId "com.kudigo.mobile_money_util"
         minSdkVersion 16
@@ -20,7 +26,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+
+             buildConfigField "String", "API_KEY", apiKey
+    }
+
+    debug {
+        buildConfigField "String", "API_KEY", apiKey
+    }
 
     }
 }

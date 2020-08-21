@@ -11,9 +11,10 @@ android {
     def localProperties = new Properties()
     localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
-    def baseUrl = localProperties["baseUrl"]
-    def baseUrlTest = localProperties["baseUrlTest"]
-    def apiKey = localProperties["apiKey"]
+    //def baseUrl = localProperties["baseUrl",'"defaultValue"']
+    //def baseUrlTest = localProperties["baseUrlTest"]
+    def baseUrl = localProperties.getProperty('baseUrl','"defaultValue"')
+    def baseUrlTest = localProperties.getProperty('baseUrl','"defaultValue"')
 
 
     defaultConfig {
@@ -30,13 +31,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "baseUrl"
-            buildConfigField "String", "API_KEY", "apiKey"
-
+            buildConfigField "String", "BASE_URL", baseUrl
         }
         debug {
-            buildConfigField "String", "BASE_URL", "baseUrlTest"
-            buildConfigField "String", "API_KEY", "apiKey"
+            buildConfigField "String", "BASE_URL", baseUrlTest
         }
     }
     compileOptions {
