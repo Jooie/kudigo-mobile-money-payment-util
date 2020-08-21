@@ -32,7 +32,7 @@ internal class BottomSheetPaymentProcessor : RoundedBottomSheetDialogFragment() 
     private var paymentCallbackInterface: MoMoPaymentCallbackInterface? = null
     private var paymentInfo: MoMoPaymentInfo? = null
     private var paymentExtraInfo: MoMoPaymentExtraInfo? = null
-    private var transactionOrderId:TransactionId? = null
+    private var transactionOrderId: TransactionId? = null
     private var activityCalling: Activity? = null
     private var timer: CountDownTimer? = null
     private var time = 2000000L
@@ -52,10 +52,10 @@ internal class BottomSheetPaymentProcessor : RoundedBottomSheetDialogFragment() 
         //MARK: format the token in a format the api accepts
         apiToken = "Token $apiToken"
 
-       transactionOrderId = TransactionId(
-               orderId = paymentInfo!!.id,
-               momoTransactionId = paymentInfo!!.id
-       )
+        transactionOrderId = TransactionId(
+            orderId = paymentInfo!!.id,
+            momoTransactionId = paymentInfo!!.id
+        )
 
         buttonMobileMoneyAction.setOnClickListener {
             transactionFinished()
@@ -218,18 +218,15 @@ internal class BottomSheetPaymentProcessor : RoundedBottomSheetDialogFragment() 
         buttonOptions?.visibility = View.VISIBLE
         buttonCancel?.visibility = View.VISIBLE
         paymentProgress?.visibility = View.GONE
-<<<<<<< HEAD
-        textViewMessage?.text = paymentExtraInfo!!.errorMessage
+
         textViewMessage.setTextColor(ContextCompat.getColor(activityCalling!!, R.color.colorRed))
-=======
-        if(paymentExtraInfo?.errorMessage!=null){
+        if (paymentExtraInfo?.errorMessage != null) {
             textViewMessage.text = paymentExtraInfo!!.errorMessage
-        }else{
+        } else {
             textViewMessage.text = getString(R.string.default_error_message)
         }
 
-        textViewMessage.setTextColor(requireActivity().resources!!.getColor(R.color.colorRed))
->>>>>>> 2804fb4939e7f78c688f83a664dd6370e0c6ab4f
+
     }
 
     //make payment
@@ -240,9 +237,9 @@ internal class BottomSheetPaymentProcessor : RoundedBottomSheetDialogFragment() 
                 override fun onFailure(call: Call<MoMoPaymentInfo>, t: Throwable) {
                     timer?.start()
                     paymentProgress?.visibility = View.GONE
-                    if(paymentExtraInfo?.retryMessage!=null){
+                    if (paymentExtraInfo?.retryMessage != null) {
                         textViewMessage.text = paymentExtraInfo!!.retryMessage
-                    }else{
+                    } else {
                         textViewMessage.text = getString(R.string.default_error_message)
                     }
 
@@ -254,9 +251,9 @@ internal class BottomSheetPaymentProcessor : RoundedBottomSheetDialogFragment() 
                     if (response.isSuccessful) {
                         timer?.start()
                         buttonMobileMoneyAction.visibility = View.VISIBLE
-                        if(paymentExtraInfo?.authorisationMessage!=null){
+                        if (paymentExtraInfo?.authorisationMessage != null) {
                             textViewMessage.text = paymentExtraInfo!!.authorisationMessage
-                        }else{
+                        } else {
                             textViewMessage.text = getString(R.string.momo_authorization_message)
                         }
                         updatePaymentStatus()
@@ -323,7 +320,7 @@ internal class BottomSheetPaymentProcessor : RoundedBottomSheetDialogFragment() 
                         momoChargeValue = if (it.chargeType == MomoChargeType.FLAT.name) {
                             it.chargeValue.toString()
                         } else {
-                           round(paymentInfo!!.amount.times(it.chargeValue), 2)
+                            round(paymentInfo!!.amount.times(it.chargeValue), 2)
                         }
                     }
                     showCharges()
