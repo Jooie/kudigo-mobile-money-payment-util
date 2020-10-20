@@ -7,8 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
-    private const val BASE_URL = "http://api.server.com/"
-    private const val BASE_TEST_URL = "http://api.server.com/"
+    private const val BASE_URL = "url"
+    private const val BASE_TEST_URL = "url"
 
     private val authInterceptor = Interceptor { chain ->
         val newUrl = chain.request().url()
