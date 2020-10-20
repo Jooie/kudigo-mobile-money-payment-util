@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val paymentInfo = MoMoPaymentInfo(
             id = "1596648967650",
             network = MoMoPaymentNetworks.MTN.name,
-            number = "0249668268",
+            number = "0244112233",
             voucherCode = "",
             amount = 200.0
         )
